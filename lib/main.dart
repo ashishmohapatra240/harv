@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harv/screens/dashboard.dart';
 import 'package:harv/screens/home.dart';
 
 void main() {
@@ -12,8 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Harv',
-      home: Home(),
+      home: Dashboard(),
     );
   }
 }

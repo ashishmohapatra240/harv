@@ -27,7 +27,7 @@ class CarouselImage extends StatelessWidget {
           );
         }).toList(),
         options: CarouselOptions(
-          viewportFraction: 0.75,
+          viewportFraction: 1,
           height: 144,
           autoPlay: true,
           enlargeCenterPage: true,
