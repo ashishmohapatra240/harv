@@ -17,19 +17,19 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(hintText),
         SizedBox(
           height: 8,
         ),
         TextFormField(
           controller: controller,
           decoration: InputDecoration(
+            floatingLabelBehavior: FloatingLabelBehavior.never,
             focusColor: GlobalVariables.primaryColor,
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: GlobalVariables.primaryColor)),
             disabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: GlobalVariables.primaryColor)),
-            hintText: 'Enter your $hintText',
+            hintText: hintText,
             hintStyle: const TextStyle(
               color: Color.fromRGBO(117, 117, 117, 1),
             ),
@@ -46,13 +46,13 @@ class CustomTextField extends StatelessWidget {
                 Radius.circular(8),
               ),
               borderSide: BorderSide(
-                color: Color.fromRGBO(83, 83, 83, 1),
+                color: Color.fromRGBO(218, 218, 218, 1),
               ),
             ),
           ),
           validator: (val) {
             if (val == null || val.isEmpty) {
-              return 'Enter your $hintText';
+              return 'hintText';
             }
             return null;
           },

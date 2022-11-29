@@ -7,18 +7,18 @@ import 'package:harv/constants/utils.dart';
 import 'package:harv/widgets/custom_button.dart';
 import 'package:harv/widgets/custom_textfield.dart';
 
-class ChooseVolunteer extends StatefulWidget {
-  const ChooseVolunteer({super.key});
+class VolunteerForm extends StatefulWidget {
+  const VolunteerForm({super.key});
   static const String routeName = '/choose-volunteer';
   @override
-  State<ChooseVolunteer> createState() => _ChooseVolunteerState();
+  State<VolunteerForm> createState() => _VolunteerFormState();
 }
 
-class _ChooseVolunteerState extends State<ChooseVolunteer> {
+class _VolunteerFormState extends State<VolunteerForm> {
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController(); 
+  final TextEditingController quantityController = TextEditingController();
 
   String category = 'Rose';
   List<File> images = [];
@@ -34,7 +34,7 @@ class _ChooseVolunteerState extends State<ChooseVolunteer> {
     quantityController.dispose();
   }
 
-  List<String> productCategories = [
+  List<String> plantCategories = [
     'Rose',
     'Bamboo',
     'Tulip',
@@ -53,13 +53,20 @@ class _ChooseVolunteerState extends State<ChooseVolunteer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(),
-        ),
-        title: const Text(
-          'Add Product',
-        ),
-      ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(),
+          ),
+          title: const Text(
+            "Plant a Sapling",
+            style: TextStyle(
+              color: Color(0xff404040),
+              fontSize: 24,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
+            ),
+          )),
       body: SingleChildScrollView(
         child: Form(
           key: _addProductFormKey,
@@ -99,21 +106,25 @@ class _ChooseVolunteerState extends State<ChooseVolunteer> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Column(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.folder_open,
+                              children: const [
+                                Icon(
+                                  Icons.upload,
                                   size: 40,
                                 ),
-                                const SizedBox(
-                                  height: 15,
+                                SizedBox(
+                                  width: 8,
                                 ),
                                 Text(
-                                  'Select Product Images',
+                                  "Upload Images",
                                   style: TextStyle(
-                                      fontSize: 15, color: Colors.grey[400]),
-                                ),
+                                    color: Color(0xff404040),
+                                    fontSize: 16,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -124,7 +135,54 @@ class _ChooseVolunteerState extends State<ChooseVolunteer> {
                 ),
                 CustomTextField(
                     controller: productNameController,
-                    hintText: 'Product Name'),
+                    hintText: 'Name of Plant'),
+                const SizedBox(
+                  height: 10,
+                ),
+                // CustomTextField(
+                //     controller: productNameController,
+                //     hintText: 'Type of Plant'),
+                SizedBox(
+                  width: double.infinity,
+                  child: DropdownButton(
+                    value: category,
+                    elevation: 0,
+                    icon: Icon(Icons.keyboard_arrow_down),
+                    items: plantCategories.map((String item) {
+                      return DropdownMenuItem(value: item, child: Text(item));
+                    }).toList(),
+                    onChanged: (String? newVal) {
+                      setState(() {
+                        category = newVal!;
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: 180,
+                      child: CustomTextField(
+                          controller: productNameController,
+                          hintText: 'Number of Plant'),
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Container(
+                      width: 180,
+                      child: CustomTextField(
+                          controller: productNameController,
+                          hintText: 'Location'),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -136,32 +194,9 @@ class _ChooseVolunteerState extends State<ChooseVolunteer> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(controller: priceController, hintText: 'Price'),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField(
-                    controller: quantityController, hintText: 'Quantity'),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: DropdownButton(
-                    value: category,
-                    icon: Icon(Icons.keyboard_arrow_down),
-                    items: productCategories.map((String item) {
-                      return DropdownMenuItem(value: item, child: Text(item));
-                    }).toList(),
-                    onChanged: (String? newVal) {
-                      setState(() {
-                        category = newVal!;
-                      });
-                    },
-                  ),
-                ),
+
                 SizedBox(height: 10),
-                CustomButton(text: 'Sell', onTap: () {}),
+                CustomButton(text: 'Submit', onTap: () {}),
               ],
             ),
           ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:harv/screens/choose_volunteer.dart';
+import 'package:harv/screens/volunteer_form.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
-    case ChooseVolunteer.routeName:
+    case VolunteerForm.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const ChooseVolunteer(),
+        builder: (_) => const VolunteerForm(),
       );
 
     default:

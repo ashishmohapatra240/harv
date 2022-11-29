@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harv/constants/global_variables.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -14,21 +15,13 @@ class CustomButton extends StatelessWidget {
       height: 52,
       child: DecoratedBox(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 236, 0, 140),
-              Color.fromARGB(255, 252, 103, 103),
-            ],
-            stops: [0.25, 0.75],
-          ),
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
+            backgroundColor: GlobalVariables.primaryColor,
             minimumSize: const Size(double.infinity, 50),
-            primary: Colors.transparent,
-            shadowColor: Colors.transparent,
           ),
           child: Text(
             text,
