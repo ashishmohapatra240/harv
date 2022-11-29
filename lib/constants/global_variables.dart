@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
+class Keys {
+  static final messangerKey = GlobalKey<ScaffoldMessengerState>();
+}
+
 class GlobalVariables {
+  static final messangerKey = GlobalKey<ScaffoldMessengerState>();
+
   // COLORS
 
   static const primaryColor = Color.fromRGBO(34, 51, 0, 1);
