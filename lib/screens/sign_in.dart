@@ -1,105 +1,130 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:harv/services/authfunctions.dart';
 
-class signIn extends StatelessWidget {
-  const signIn({super.key});
+class signIn extends StatefulWidget {
+  signIn({super.key});
+
+  @override
+  State<signIn> createState() => _signInState();
+}
+
+class _signInState extends State<signIn> {
+  final _formKey = GlobalKey<FormState>();
+
+  String email = '';
+
+  String password = '';
+
+  bool login = false;
+
+    String fullname = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 224, 20, 128),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
-              child: Text(
-                'Welcome Back!',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.w500),
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Enter your Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.rectangle_outlined,
-                      color: Color.fromARGB(255, 190, 190, 190),
+      child: Form(
+        key: _formKey,
+        child: Container(
+          padding: EdgeInsets.all(14),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // ======== Full Name ========
+              login
+                  ? Container()
+                  : TextFormField(
+                      key: ValueKey('fullname'),
+                      decoration: InputDecoration(
+                        hintText: 'Enter Full Name',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter Full Name';
+                        } else {
+                          return null;
+                        }
+                      },
+                      onSaved: (value) {
+                        setState(() {
+                          fullname = value!;
+                        });
+                      },
                     ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      'Remember Me?',
-                      style: TextStyle(fontWeight: FontWeight.w300),
-                    )
-                  ],
+
+              // ======== Email ========
+              TextFormField(
+                key: ValueKey('email'),
+                decoration: InputDecoration(
+                  hintText: 'Enter Email',
                 ),
-                Text(
-                  'Forgot Password?',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 64,
-            ),
-            Center(
-              child: ElevatedButton(
-                child: Text('Sign In'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      //to set border radius to button
-                      borderRadius: BorderRadius.circular(8)),
-                  minimumSize: const Size(374 + 24, 50),
-                  primary: Color.fromARGB(255, 1, 138, 6),
+                validator: (value) {
+                  if (value!.isEmpty || !value.contains('@')) {
+                    return 'Please Enter valid Email';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (value) {
+                  setState(() {
+                    email = value!;
+                  });
+                },
+              ),
+              // ======== Password ========
+              TextFormField(
+                key: ValueKey('password'),
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'Enter Password',
                 ),
-                onPressed: () {},
+                validator: (value) {
+                  if (value!.length < 6) {
+                    return 'Please Enter Password of min length 6';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (value) {
+                  setState(() {
+                    password = value!;
+                  });
+                },
               ),
-            ),
-            SizedBox(
-              height: 224,
-            ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Create an account?'),
-                  Text(
-                    'Signup',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ],
+              SizedBox(
+                height: 30,
               ),
-            )
-          ],
+              Container(
+                height: 55,
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        login
+                            ? AuthServices.signinUser(email, password, context)
+                            : AuthServices.signupUser(
+                                email, password, fullname, context);
+                      }
+                    },
+                    child: Text(login ? 'Login' : 'Signup')),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      login = !login;
+                    });
+                  },
+                  child: Text(login
+                      ? "Don't have an account? Signup"
+                      : "Already have an account? Login"))
+            ],
+          ),
         ),
       ),
     ));

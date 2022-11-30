@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:harv/volunteer_card.dart';
 
 class ChooseVolunteer extends StatelessWidget {
   const ChooseVolunteer({super.key});
@@ -13,7 +12,7 @@ class ChooseVolunteer extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
         child: Column(
           children: [
-       VCard()
+       Card()
           ],
         ),
       ),
