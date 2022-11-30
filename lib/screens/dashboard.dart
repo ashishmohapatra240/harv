@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harv/screens/home_organization.dart';
+import 'package:harv/screens/report.dart';
 
 import '../constants/global_variables.dart';
 
@@ -16,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
   int _page = 0;
   List<Widget> pages = [
     const Home(),
-    const Text('data'),
+    const ReportScreen(),
     const Text('data'),
   ];
 

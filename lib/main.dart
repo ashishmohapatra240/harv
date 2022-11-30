@@ -8,6 +8,7 @@ import 'package:harv/screens/dashboard.dart';
 import 'package:harv/screens/home_organization.dart';
 import 'package:harv/screens/home_volunteer.dart';
 import 'package:harv/screens/plants.dart';
+import 'package:harv/screens/report.dart';
 import 'package:harv/screens/view_more.dart';
 import 'package:harv/screens/volunteer_form.dart';
 
