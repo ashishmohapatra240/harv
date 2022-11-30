@@ -18,10 +18,40 @@ class HomeCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Image.asset(
-            'assets/images/Bamboo1.png',
-            height: 108,
-            width: 172,
+          Stack(
+            children: <Widget>[
+              Image.asset(
+                'assets/images/Bamboo1.png',
+                height: 108,
+                width: 172,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Color(0xff72941c),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 7,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "230",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +83,7 @@ class HomeCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(width: 8
-                  ),
+                  SizedBox(width: 8),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,

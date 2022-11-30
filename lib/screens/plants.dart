@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:harv/widgets/custom_button.dart';
+import 'package:harv/widgets/sensor_datacard.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class MyPlants extends StatelessWidget {
   const MyPlants({super.key});
@@ -10,197 +11,232 @@ class MyPlants extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 56, 20, 0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Text(
-                'Your Plant',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: 164,
-              width: 416,
-              child: Image.asset(
-                'assets/plant.png',
-                fit: BoxFit.fill,
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              'Cedar',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Type:Scrubs',
-                  style: TextStyle(fontSize: 18),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 56, 20, 0),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12),
+                child: Text(
+                  'Your Plant',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                Text('Date:19.02.22', style: TextStyle(fontSize: 18)),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Type:Scrubs', style: TextStyle(fontSize: 18)),
-                Text('Date:19.02.22', style: TextStyle(fontSize: 18)),
-              ],
-            ),
-            Container(
-              height: 268,
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                primary: false,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 8,
-                childAspectRatio: 1.6,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 252, 206),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.abc_sharp,size: 44,), Text('23%',style: TextStyle(fontSize: 24),)],
-                        ),
-                        Text("Temperature"),
-                      ],
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 120,
+                width: 416,
+                child: Image.asset(
+                  'assets/images/Banner2.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                'Cedar',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Type: Wild Shrub",
+                    style: TextStyle(
+                      color: Color(0xff404040),
+                      fontSize: 14,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
-                  Container(                 
-                    decoration: BoxDecoration(
-                      color: Color(0xFFD4F3EA),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.abc_sharp,size: 44,), Text('23%',style: TextStyle(fontSize: 24),)],
-                        ),
-                        Text("Humidity"),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 233, 208),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.abc_sharp,size: 44,), Text('23%',style: TextStyle(fontSize: 24),)],
-                        ),
-                        Text("Sunlight"),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFDFF4FD),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Icon(Icons.abc_sharp,size: 44,), Text('23%',style: TextStyle(fontSize: 24),)],
-                        ),
-                        Text("Soil Moisture"),
-                      ],
+                  Text(
+                    'Date:19.02.22',
+                    style: TextStyle(
+                      color: Color(0xff404040),
+                      fontSize: 14,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Row(
-              children: [
-                CircularPercentIndicator(
-                  radius: 50.0,
-                  lineWidth: 5.0,
-                  percent: 1.0,
-                  center: new Text("100%"),
-                  progressColor: Colors.green,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Score',
-                            style: TextStyle(fontSize: 22),
-                          ),
-                          SizedBox(
-                            width: 140,
-                          ),
-                          Text('View More'),
-                        ],
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Location: Infocity',
+                    style: TextStyle(
+                      color: Color(0xff404040),
+                      fontSize: 14,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w300,
                     ),
-                    Text(
-                        'Your plant is well watered and gets enough\nsunlight however temperature and humidity\n needs to be taken care of.'),
+                  ),
+                  Text(
+                    'Quantity: 400 saplings',
+                    style: TextStyle(
+                      color: Color(0xff404040),
+                      fontSize: 14,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                height: 268,
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  primary: false,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 1.6,
+                  crossAxisCount: 2,
+                  children: <Widget>[
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     color: Color.fromARGB(255, 255, 252, 206),
+                    //     borderRadius: BorderRadius.circular(10),
+                    //   ),
+                    //   padding: const EdgeInsets.all(16),
+                    //   child: Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: [
+                    //           Icon(
+                    //             Icons.abc_sharp,
+                    //             size: 44,
+                    //           ),
+                    //           Text(
+                    //             '23%',
+                    //             style: TextStyle(fontSize: 24),
+                    //           )
+                    //         ],
+                    //       ),
+                    //       Text("Temperature"),
+                    //     ],
+                    //   ),
+                    // ),
+                    SensorDataCard(
+                      color: Color(0xFFFFFDE2),
+                      imageUri: 'assets/images/Humidity.png',
+                    ),
+                    SensorDataCard(
+                      color: Color(0xFFD4F3EA),
+                      imageUri: 'assets/images/Humidity.png',
+                    ),
+                    SensorDataCard(
+                      color: Color(0xFFFFF7EE),
+                      imageUri: 'assets/images/Temperature.png',
+                    ),
+                    SensorDataCard(
+                      color: Color(0xFFDFF4FD),
+                      imageUri: 'assets/images/SoilMoisture.png',
+                    ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            ElevatedButton(
-              child: Text(
-                'Assign Me',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    //to set border radius to button
-                    borderRadius: BorderRadius.circular(8)),
-                minimumSize: const Size(374 + 24, 50),
-                primary: Color.fromARGB(255, 1, 138, 6),
+              SizedBox(
+                height: 24,
               ),
-              onPressed: () {},
-            ),
-          ]),
+              Row(
+                children: [
+                  CircularPercentIndicator(
+                    backgroundColor: const Color(0xFFB1D8BC),
+                    circularStrokeCap: CircularStrokeCap.round,
+                    radius: 44,
+                    lineWidth: 12,
+                    percent: .7,
+                    center: Text("73%"),
+                    progressColor: Color.fromRGBO(86, 203, 57, 1),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Score",
+                                  style: TextStyle(
+                                    color: Color(0xff404040),
+                                    fontSize: 16,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(width: 144),
+                                Text(
+                                  "Know more",
+                                  style: TextStyle(
+                                    color: Color(0xff213300),
+                                    fontSize: 8,
+                                    decoration: TextDecoration.underline,
+                                    fontFamily: "Roboto",
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 240,
+                        child: Text(
+                          "Your plant is well watered and gets enough sunlight however temperature and humidity needs to be taken care of.",
+                          style: TextStyle(
+                            color: Color(0xff838383),
+                            fontSize: 14,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 12,
+              ),
+
+              // ElevatedButton(
+              //   child: Text(
+              //     'Assign Me',
+              //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              //   ),
+              //   style: ElevatedButton.styleFrom(
+              //     shape: RoundedRectangleBorder(
+              //         //to set border radius to button
+              //         borderRadius: BorderRadius.circular(8)),
+              //     minimumSize: const Size(374 + 24, 50),
+              //     primary: Color.fromARGB(255, 1, 138, 6),
+              //   ),
+              //   onPressed: () {},
+              // ),
+            ]),
+          ),
         ),
-      ),
-    );
+        floatingActionButton: CustomButton(text: 'Assign Volunteer', onTap: () {}));
   }
 }
