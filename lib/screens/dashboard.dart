@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harv/screens/home.dart';
+import 'package:harv/screens/home_organization.dart';
 
 import '../constants/global_variables.dart';
 
@@ -34,13 +34,14 @@ class _DashboardState extends State<Dashboard> {
         currentIndex: _page,
         selectedItemColor: GlobalVariables.primaryColor,
         unselectedItemColor: GlobalVariables.unselectedNavBarColor,
-        backgroundColor: GlobalVariables.cardBackgroundColor,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         iconSize: 24,
         onTap: updatePage,
         items: [
           //Home
           BottomNavigationBarItem(
             icon: Container(
+              height: 10,
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -57,6 +58,7 @@ class _DashboardState extends State<Dashboard> {
 
           BottomNavigationBarItem(
             icon: Container(
+                 height: 10,
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
@@ -72,6 +74,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           BottomNavigationBarItem(
             icon: Container(
+                 height: 10,
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(

@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class signUp extends StatefulWidget {
   const signUp({super.key});
-
+  static const String routeName = '/sign-up';
   @override
   State<signUp> createState() => _signUpState();
 }

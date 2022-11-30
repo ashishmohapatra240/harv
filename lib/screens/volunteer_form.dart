@@ -9,7 +9,7 @@ import 'package:harv/widgets/custom_textfield.dart';
 
 class VolunteerForm extends StatefulWidget {
   const VolunteerForm({super.key});
-  static const String routeName = '/choose-volunteer';
+  static const String routeName = '/volunteer-form';
   @override
   State<VolunteerForm> createState() => _VolunteerFormState();
 }
