@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harv/screens/choose_volunteer.dart';
 import 'package:harv/screens/dashboard.dart';
 import 'package:harv/screens/home.dart';
 import 'package:harv/screens/plants.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Harv',
-      home: MyPlants(),
+      home: Home(),
     );
   }
 }

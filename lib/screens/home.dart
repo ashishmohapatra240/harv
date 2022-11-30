@@ -31,17 +31,17 @@ class Home extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 48),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 48),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CarouselImage(),
                 SizedBox(
-                  height: 36,
+                  height: 32,
                 ),
                 Text(
-                  "Track your Plants",
+                  "Track your plants",
                   style: TextStyle(
                     color: Color(0xff404040),
                     fontSize: 24,
@@ -56,7 +56,7 @@ class Home extends StatelessWidget {
                   height: 210,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.all(8),
+                    // padding: const EdgeInsets.all(8),
                     children: <Widget>[
                       HomeCard(),
                       SizedBox(
@@ -67,7 +67,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 36,
+                  height: 24,
                 ),
                 Container(
                   width: 346,
@@ -102,13 +102,20 @@ class Home extends StatelessWidget {
                   height: 12,
                 ),
                 Container(
-                  width: 346,
+                  width: 390,
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 4,
+                        color: Color.fromARGB(255, 228, 228, 228),
+                        blurRadius: 4,
+                      )
+                    ],
                     borderRadius: BorderRadius.circular(8),
-                    color: Color(0xffe5f1e0),
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
+                    horizontal: 8,
                     vertical: 9,
                   ),
                   child: Column(
@@ -121,22 +128,23 @@ class Home extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 92.51,
-                            height: 90.42,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 44),
+                            child: Container(
+                              child: Image.asset('Banner.png'),
+                              width: 92.51,
+                              height: 90.42,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                          SizedBox(width: 16),
-                          SizedBox(
-                            width: 201,
-                            child: Text(
-                              "Humidity is below 48%\nBamboo Plantation at\nPatia needs your Attention!",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
+                  
+                          Text(
+                            "Humidity is below 48%\nBamboo Plantation at\nPatia needs your Attention!",
+                            style: TextStyle(
+                              fontSize: 16,
                             ),
                           ),
                         ],

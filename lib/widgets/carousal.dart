@@ -18,10 +18,13 @@ class CarouselImage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Image.asset(
-                i,
-                fit: BoxFit.cover,
-                height: 200,
+              child: ClipRRect(
+                child: Image.asset(
+                  i,
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: 400,
+                ),
               ),
             ),
           );

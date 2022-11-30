@@ -220,23 +220,13 @@ class MyPlants extends StatelessWidget {
                 height: 12,
               ),
 
-              // ElevatedButton(
-              //   child: Text(
-              //     'Assign Me',
-              //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              //   ),
-              //   style: ElevatedButton.styleFrom(
-              //     shape: RoundedRectangleBorder(
-              //         //to set border radius to button
-              //         borderRadius: BorderRadius.circular(8)),
-              //     minimumSize: const Size(374 + 24, 50),
-              //     primary: Color.fromARGB(255, 1, 138, 6),
-              //   ),
-              //   onPressed: () {},
-              // ),
+           
             ]),
           ),
         ),
-        floatingActionButton: CustomButton(text: 'Assign Volunteer', onTap: () {}));
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.fromLTRB(32,0,0,0),
+          child: CustomButton(text: 'Assign Volunteer', onTap: () {}),
+        ));
   }
 }
