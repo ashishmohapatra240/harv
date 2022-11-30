@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:harv/services/authfunctions.dart';
 
-class signIn extends StatefulWidget {
-  signIn({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<signIn> createState() => _signInState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _signInState extends State<signIn> {
+class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
   String email = '';
-
   String password = '';
-
+  String fullname = '';
   bool login = false;
-
-    String fullname = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Form(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('Login'),
+      ),
+      body: Form(
         key: _formKey,
         child: Container(
           padding: EdgeInsets.all(14),
@@ -127,6 +125,6 @@ class _signInState extends State<signIn> {
           ),
         ),
       ),
-    ));
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:harv/constants/global_variables.dart';
 import 'package:harv/widgets/homecard.dart';
@@ -29,6 +30,13 @@ class Home extends StatelessWidget {
               color: GlobalVariables.primaryColor,
             ),
           ),
+          actions: [
+          IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+              },
+              icon: Icon(Icons.leave_bags_at_home, color: GlobalVariables.primaryColor,))
+        ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 48),
@@ -131,7 +139,7 @@ class Home extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(right: 44),
                             child: Container(
-                              child: Image.asset('Banner.png'),
+                              child: Image.asset('assets/images/Banner.png'),
                               width: 92.51,
                               height: 90.42,
                               decoration: BoxDecoration(
@@ -141,7 +149,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                   
-                          Text(
+                          const Text(
                             "Humidity is below 48%\nBamboo Plantation at\nPatia needs your Attention!",
                             style: TextStyle(
                               fontSize: 16,

@@ -5,11 +5,11 @@ import 'package:harv/screens/choose_volunteer.dart';
 import 'package:harv/screens/dashboard.dart';
 import 'package:harv/screens/home.dart';
 import 'package:harv/screens/plants.dart';
+import 'package:harv/screens/realtimedata.dart';
 import 'package:harv/screens/sign_in.dart';
 import 'package:harv/screens/volunteer_form.dart';
 
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Dashboard();
+          return RealtimeData();
         } else {
-          return signIn();
+          return const LoginForm();
         }
-      },
+      },  
     ));
   }
 }
