@@ -9,8 +9,15 @@ class HomeCard extends StatelessWidget {
       width: 196,
       height: 200,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(blurRadius: 8,
+           color: Color.fromARGB(255, 229, 229, 229),
+             spreadRadius: 0
+           ),
+           
+        ],
         borderRadius: BorderRadius.circular(8),
-        color: Color(0xffe5f1e0),
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
@@ -20,35 +27,42 @@ class HomeCard extends StatelessWidget {
         children: [
           Stack(
             children: <Widget>[
-              Image.asset(
-                'assets/images/Bamboo1.png',
-                height: 108,
-                width: 172,
+              ClipRRect(
+                 borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/Bamboo1.png',
+                  height: 108,
+                  width: 172,
+                ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: Color(0xff72941c),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 7,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "230",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w800,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(112,72,2,2),
+                child: Container(
+                  
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Color(0xff72941c),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 7,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "230",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ],
@@ -68,17 +82,17 @@ class HomeCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 4),
+              SizedBox(height: 8),
               Row(
                 children: [
                   Row(
                     children: const [
-                      Icon(Icons.location_pin),
+                      Icon(Icons.location_pin,size:18,color:Color.fromARGB(255, 115, 115, 115),),
                       Text(
                         "Jaydev Vihar",
                         style: TextStyle(
-                          color: Color(0xff565b59),
-                          fontSize: 10,
+                          color: Color.fromARGB(255, 115, 115, 115),
+                          fontSize: 12,
                         ),
                       ),
                     ],
@@ -86,8 +100,8 @@ class HomeCard extends StatelessWidget {
                   SizedBox(width: 8),
                   Row(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         width: 10,
@@ -97,7 +111,9 @@ class HomeCard extends StatelessWidget {
                         ),
                         child: Icon(
                           Icons.calendar_month_rounded,
-                          size: 16,
+                          color:Color.fromARGB(255, 115, 115, 115),
+
+                          size: 12,
                         ),
                       ),
                       SizedBox(width: 2),
