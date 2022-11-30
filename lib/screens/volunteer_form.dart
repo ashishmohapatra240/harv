@@ -1,24 +1,28 @@
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:harv/constants/utils.dart';
+import 'package:harv/services/volunteerFunctions.dart';
 import 'package:harv/widgets/custom_button.dart';
 import 'package:harv/widgets/custom_textfield.dart';
 
 class VolunteerForm extends StatefulWidget {
   const VolunteerForm({super.key});
-  static const String routeName = '/choose-volunteer';
+  static const String routeName = '/volunteer-form';
   @override
   State<VolunteerForm> createState() => _VolunteerFormState();
 }
 
 class _VolunteerFormState extends State<VolunteerForm> {
-  final TextEditingController productNameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
+  final TextEditingController typeController = TextEditingController();
+  final docSapling = FirebaseFirestore.instance.collection('saplings').doc();
 
   String category = 'Rose';
   List<File> images = [];
@@ -28,10 +32,11 @@ class _VolunteerFormState extends State<VolunteerForm> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    productNameController.dispose();
+    nameController.dispose();
     descriptionController.dispose();
-    priceController.dispose();
-    quantityController.dispose();
+    descriptionController.dispose();
+    typeController.dispose();
+    numberController.dispose();
   }
 
   List<String> plantCategories = [
@@ -134,30 +139,16 @@ class _VolunteerFormState extends State<VolunteerForm> {
                   height: 30,
                 ),
                 CustomTextField(
-                    controller: productNameController,
-                    hintText: 'Name of Plant'),
+                    controller: nameController, hintText: 'Name of Plant'),
                 const SizedBox(
                   height: 10,
                 ),
                 // CustomTextField(
                 //     controller: productNameController,
                 //     hintText: 'Type of Plant'),
-                SizedBox(
-                  width: double.infinity,
-                  child: DropdownButton(
-                    value: category,
-                    elevation: 0,
-                    icon: Icon(Icons.keyboard_arrow_down),
-                    items: plantCategories.map((String item) {
-                      return DropdownMenuItem(value: item, child: Text(item));
-                    }).toList(),
-                    onChanged: (String? newVal) {
-                      setState(() {
-                        category = newVal!;
-                      });
-                    },
-                  ),
-                ),
+                CustomTextField(
+                    controller: typeController, hintText: 'Type of Plant'),
+
                 const SizedBox(
                   height: 10,
                 ),
@@ -166,7 +157,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                     Container(
                       width: 180,
                       child: CustomTextField(
-                          controller: productNameController,
+                          controller: numberController,
                           hintText: 'Number of Plant'),
                     ),
                     SizedBox(
@@ -175,8 +166,7 @@ class _VolunteerFormState extends State<VolunteerForm> {
                     Container(
                       width: 180,
                       child: CustomTextField(
-                          controller: productNameController,
-                          hintText: 'Location'),
+                          controller: locationController, hintText: 'Location'),
                     ),
                   ],
                 ),
@@ -196,7 +186,19 @@ class _VolunteerFormState extends State<VolunteerForm> {
                 ),
 
                 SizedBox(height: 10),
-                CustomButton(text: 'Submit', onTap: () {}),
+                CustomButton(
+                    text: 'Submit',
+                    onTap: () {
+                      FirebaseFirestore.instance
+                          .collection('Saplings')
+                          .add({
+                            'name': nameController.text,
+                            'type': typeController.text,
+                            'number': numberController.text,
+                            'location': locationController.text,
+                            'description': descriptionController.text,  
+                          });
+                    }),
               ],
             ),
           ),

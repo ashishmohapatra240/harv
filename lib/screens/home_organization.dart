@@ -6,7 +6,7 @@ import 'package:harv/widgets/carousal.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
-
+  static const String routeName = '/home-organization';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -78,7 +78,7 @@ class Home extends StatelessWidget {
                   height: 24,
                 ),
                 Container(
-                  width: 346,
+                  width: 400,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(width: 252),
+                      SizedBox(width: 300),
                       Text(
                         "see all",
                         textAlign: TextAlign.right,
@@ -114,9 +114,9 @@ class Home extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        spreadRadius: 4,
+                        spreadRadius: 0,
                         color: Color.fromARGB(255, 228, 228, 228),
-                        blurRadius: 4,
+                        blurRadius: 01,
                       )
                     ],
                     borderRadius: BorderRadius.circular(8),

@@ -5,7 +5,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ViewMore extends StatelessWidget {
   const ViewMore({super.key});
-
+  static const String routeName = '/view-more';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,36 +32,42 @@ class ViewMore extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  CircularPercentIndicator(
-                    radius: 50.0,
-                    lineWidth: 15.0,
-                    percent: 1.0,
-                    center: new Text("100%"),
-                    progressColor: Colors.green,
+                   CircularPercentIndicator(
+                    backgroundColor: const Color(0xFFB1D8BC),
+                    circularStrokeCap: CircularStrokeCap.round,
+                    radius: 44,
+                    lineWidth: 12,
+                    percent: .7,
+                    center: Text("73%"),
+                    progressColor: Color.fromRGBO(86, 203, 57, 1),
                   ),
                   Text('Good')
                 ],
               ),
               Column(
                 children: [
-                  CircularPercentIndicator(
-                    radius: 50.0,
-                    lineWidth: 15.0,
-                    percent: 1.0,
-                    center: new Text("100%"),
-                    progressColor: Color.fromARGB(255, 14, 104, 182),
+                   CircularPercentIndicator(
+                    backgroundColor: const Color(0xFFB1D8BC),
+                    circularStrokeCap: CircularStrokeCap.round,
+                    radius: 44,
+                    lineWidth: 12,
+                    percent: .7,
+                    center: Text("73%"),
+                    progressColor: Color.fromARGB(255, 144, 106, 26),
                   ),
                   Text('Good')
                 ],
               ),
               Column(
                 children: [
-                  CircularPercentIndicator(
-                    radius: 50.0,
-                    lineWidth: 15.0,
-                    percent: 1.0,
-                    center: new Text("100%"),
-                    progressColor: Color.fromARGB(255, 102, 85, 1),
+                 CircularPercentIndicator(
+                    backgroundColor: const Color(0xFFB1D8BC),
+                    circularStrokeCap: CircularStrokeCap.round,
+                    radius: 44,
+                    lineWidth: 12,
+                    percent: .7,
+                    center: Text("73%"),
+                    progressColor: Color.fromARGB(255, 57, 166, 203),
                   ),
                   Text('Good')
                 ],

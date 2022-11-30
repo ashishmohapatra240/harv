@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:harv/services/firebaseFunctions.dart';
 
 class AuthServices {
-  static signupUser(
-      String email, String password, String name, BuildContext context) async {
+  static signupUser(String email, String password, String location, String name,
+      BuildContext context) async {
+    print('name' + name);
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
       await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
-      await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Registration Successful')));
+      await FirestoreServices.saveUser(
+          name, location, email, userCredential.user!.uid);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Registration Successful'),
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(

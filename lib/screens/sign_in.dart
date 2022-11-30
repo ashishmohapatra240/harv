@@ -3,6 +3,7 @@ import 'package:harv/services/authfunctions.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
+  static const String routeName = '/sign-in';
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -14,6 +15,7 @@ class _LoginFormState extends State<LoginForm> {
   String email = '';
   String password = '';
   String fullname = '';
+  String location = '';
   bool login = false;
 
   @override
@@ -51,6 +53,24 @@ class _LoginFormState extends State<LoginForm> {
                         });
                       },
                     ),
+              TextFormField(
+                key: ValueKey('location'),
+                decoration: InputDecoration(
+                  hintText: 'Enter Location',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter Location';
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (value) {
+                  setState(() {
+                    location = value!;
+                  });
+                },
+              ),
 
               // ======== Email ========
               TextFormField(
@@ -104,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                         login
                             ? AuthServices.signinUser(email, password, context)
                             : AuthServices.signupUser(
-                                email, password, fullname, context);
+                                email, password, fullname, location, context);
                       }
                     },
                     child: Text(login ? 'Login' : 'Signup')),

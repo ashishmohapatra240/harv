@@ -1,29 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:harv/screens/choose_volunteer.dart';
+import 'package:harv/screens/view_more.dart';
 import 'package:harv/widgets/custom_button.dart';
 import 'package:harv/widgets/sensor_datacard.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:firebase_database/firebase_database.dart';
 
-class MyPlants extends StatefulWidget {
-  MyPlants({super.key});
-
-  @override
-  State<MyPlants> createState() => _MyPlantsState();
-}
-
-
-
-class _MyPlantsState extends State<MyPlants> {
-  Query dbRef = FirebaseDatabase.instance.ref().child('Students');
-  DatabaseReference reference =
-      FirebaseDatabase.instance.ref().child('Students');
+class MyPlants extends StatelessWidget {
+  const MyPlants({super.key});
+  static const String routeName = '/sign-in';
 
   @override
   Widget build(BuildContext context) {
+      void navigateToViewMore() {
+    Navigator.pushNamed(context, ViewMore.routeName);
+  }
+    void navigateToAssignVolunteer() {
+    Navigator.pushNamed(context, ChooseVolunteer.routeName);
+  }
     return Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -201,14 +196,19 @@ class _MyPlantsState extends State<MyPlants> {
                                   ),
                                 ),
                                 SizedBox(width: 144),
-                                Text(
-                                  "Know more",
-                                  style: TextStyle(
-                                    color: Color(0xff213300),
-                                    fontSize: 8,
-                                    decoration: TextDecoration.underline,
-                                    fontFamily: "Roboto",
-                                    fontWeight: FontWeight.w300,
+                                InkWell(
+                                  onTap: () {
+                                navigateToViewMore();
+                     },
+                                  child: Text(
+                                    "Know more",
+                                    style: TextStyle(
+                                      color: Color(0xff213300),
+                                      fontSize: 10,
+                                      decoration: TextDecoration.underline,
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -233,12 +233,16 @@ class _MyPlantsState extends State<MyPlants> {
               SizedBox(
                 height: 12,
               ),
+
+           
             ]),
           ),
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
-          child: CustomButton(text: 'Assign Volunteer', onTap: () {}),
+          padding: const EdgeInsets.fromLTRB(32,0,0,0),
+          child: CustomButton(text: 'Assign Volunteer', onTap: () {
+            navigateToAssignVolunteer();
+          }),
         ));
   }
 }
