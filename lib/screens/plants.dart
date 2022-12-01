@@ -7,6 +7,8 @@ import 'package:harv/widgets/custom_button.dart';
 import 'package:harv/widgets/sensor_datacard.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../models/model.dart';
+
 class MyPlants extends StatelessWidget {
   const MyPlants({super.key});
   static const String routeName = '/sign-in';
@@ -19,6 +21,7 @@ class MyPlants extends StatelessWidget {
     void navigateToAssignVolunteer() {
     Navigator.pushNamed(context, ChooseVolunteer.routeName);
   }
+   final args = ModalRoute.of(context)?.settings.arguments as ScreenArguments?;
     return Scaffold(
         body: SingleChildScrollView(
           child: Padding(

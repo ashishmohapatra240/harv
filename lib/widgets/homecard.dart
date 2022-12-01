@@ -1,7 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
-  const HomeCard({super.key});
+  String name;
+  String location;
+  String date;
+
+  HomeCard({
+    Key? key,
+    required this.name,
+    required this.location,
+    required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +20,10 @@ class HomeCard extends StatelessWidget {
       height: 200,
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(blurRadius: 8,
-           color: Color.fromARGB(255, 229, 229, 229),
-             spreadRadius: 0
-           ),
-           
+          BoxShadow(
+              blurRadius: 8,
+              color: Color.fromARGB(255, 229, 229, 229),
+              spreadRadius: 0),
         ],
         borderRadius: BorderRadius.circular(8),
         color: Color.fromARGB(255, 255, 255, 255),
@@ -28,7 +37,7 @@ class HomeCard extends StatelessWidget {
           Stack(
             children: <Widget>[
               ClipRRect(
-                 borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8.0),
                 child: Image.asset(
                   'assets/images/Bamboo1.png',
                   height: 108,
@@ -36,9 +45,8 @@ class HomeCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(112,72,2,2),
+                padding: const EdgeInsets.fromLTRB(112, 72, 2, 2),
                 child: Container(
-                  
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     color: Color(0xff72941c),
@@ -73,7 +81,7 @@ class HomeCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  "Cedar",
+                  name,
                   style: TextStyle(
                     color: Color(0xff404040),
                     fontSize: 22,
@@ -86,10 +94,14 @@ class HomeCard extends StatelessWidget {
               Row(
                 children: [
                   Row(
-                    children: const [
-                      Icon(Icons.location_pin,size:18,color:Color.fromARGB(255, 115, 115, 115),),
+                    children: [
+                      Icon(
+                        Icons.location_pin,
+                        size: 18,
+                        color: Color.fromARGB(255, 115, 115, 115),
+                      ),
                       Text(
-                        "Jaydev Vihar",
+                        location,
                         style: TextStyle(
                           color: Color.fromARGB(255, 115, 115, 115),
                           fontSize: 12,
@@ -111,14 +123,13 @@ class HomeCard extends StatelessWidget {
                         ),
                         child: Icon(
                           Icons.calendar_month_rounded,
-                          color:Color.fromARGB(255, 115, 115, 115),
-
+                          color: Color.fromARGB(255, 115, 115, 115),
                           size: 12,
                         ),
                       ),
                       SizedBox(width: 2),
                       Text(
-                        "02.11.2022",
+                        date,
                         style: TextStyle(
                           color: Color(0xff565b59),
                           fontSize: 10,

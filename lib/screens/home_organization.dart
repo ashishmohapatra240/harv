@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:harv/constants/global_variables.dart';
+import 'package:harv/models/model.dart';
+import 'package:harv/screens/plants.dart';
 import 'package:harv/widgets/homecard.dart';
 import 'package:harv/widgets/carousal.dart';
 
@@ -9,35 +12,51 @@ class Home extends StatelessWidget {
   static const String routeName = '/home-organization';
   @override
   Widget build(BuildContext context) {
+    void navigateToMyPlants() {
+      Navigator.pushNamed(context, MyPlants.routeName,arguments: ScreenArguments(
+        'Extract Arguments Screen',
+        'This message is extracted in the build method.',
+        'hello',
+        'hello',
+        'af'
+      ),);
+    }
+
+    final db = FirebaseFirestore.instance;
+    final args = ModalRoute.of(context)?.settings.arguments as ScreenArguments?;
+
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: Text(
-            "Harv",
-            style: TextStyle(
-              color: Color(0xff404040),
-              fontSize: 30,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w600,
-            ),
+        child: Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          "Harv",
+          style: TextStyle(
+            color: Color(0xff404040),
+            fontSize: 30,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w600,
           ),
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.circle,
-              color: GlobalVariables.primaryColor,
-            ),
+        ),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.circle,
+            color: GlobalVariables.primaryColor,
           ),
-          actions: [
+        ),
+        actions: [
           IconButton(
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
               },
-              icon: Icon(Icons.leave_bags_at_home, color: GlobalVariables.primaryColor,))
+              icon: Icon(
+                Icons.leave_bags_at_home,
+                color: GlobalVariables.primaryColor,
+              ))
         ],
-        ),
+      ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 48),
           child: SingleChildScrollView(
@@ -62,17 +81,32 @@ class Home extends StatelessWidget {
                 ),
                 Container(
                   height: 210,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    // padding: const EdgeInsets.all(8),
-                    children: <Widget>[
-                      HomeCard(),
-                      SizedBox(
-                        width: 24,
-                      ),
-                      HomeCard(),
-                    ],
-                  ),
+                  child: StreamBuilder<QuerySnapshot>(
+        stream: db.collection('Saplings').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else
+            return ListView(
+              scrollDirection: Axis.horizontal,
+              children: snapshot.data!.docs.map((doc) {
+                final dynamic data = doc.data();
+                {
+                  return InkWell(
+                    onTap: navigateToMyPlants,
+                    child: HomeCard(
+                      name: data?['name'],
+                      location: data?['location'],
+                      date: data?['date'],
+                    ),
+                  );
+                }
+              }).toList(),
+            );
+        },
+      ),
                 ),
                 SizedBox(
                   height: 24,
@@ -148,7 +182,7 @@ class Home extends StatelessWidget {
                               ),
                             ),
                           ),
-                  
+
                           const Text(
                             "Humidity is below 48%\nBamboo Plantation at\nPatia needs your Attention!",
                             style: TextStyle(
@@ -168,3 +202,32 @@ class Home extends StatelessWidget {
     );
   }
 }
+//       body: StreamBuilder<QuerySnapshot>(
+//         stream: db.collection('Saplings').snapshots(),
+//         builder: (context, snapshot) {
+//           if (!snapshot.hasData) {
+//             return Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           } else
+//             return ListView(
+//               scrollDirection: Axis.horizontal,
+//               children: snapshot.data!.docs.map((doc) {
+//                 final dynamic data = doc.data();
+//                 {
+//                   return InkWell(
+//                     onTap: navigateToMyPlants,
+//                     child: HomeCard(
+//                       name: data?['name'],
+//                       location: data?['location'],
+//                       date: data?['date'],
+//                     ),
+//                   );
+//                 }
+//               }).toList(),
+//             );
+//         },
+//       ),
+//     ));
+//   }
+// }

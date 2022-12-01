@@ -6,8 +6,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:harv/router.dart';
 import 'package:harv/screens/choose_volunteer.dart';
 import 'package:harv/screens/dashboard.dart';
+import 'package:harv/screens/fetchData.dart';
 import 'package:harv/screens/home_organization.dart';
-import 'package:harv/screens/home_volunteer.dart';
+import 'package:harv/screens/location_screen.dart';
 import 'package:harv/screens/plants.dart';
 import 'package:harv/screens/sign_in.dart';
 import 'package:harv/screens/view_more.dart';
@@ -133,7 +134,7 @@ class _MyAppState extends State<MyApp> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return VolunteerForm();
+              return Dashboard();
             } else {
               return LoginForm();
             }
